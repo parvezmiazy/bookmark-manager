@@ -1,0 +1,30 @@
+{
+  "bookmarkList": [
+    {
+      "title": "ttt",
+      "url": "tttt",
+      "categories": [
+        {
+          "name": "ttttt"
+        },
+        {
+          "name": "title2"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "title": "ttt",
+      "url": "https://www.dailynayadiganta.com/",
+      "categories": [
+        {
+          "name": "ttt"
+        },
+        {
+          "name": "test3"
+        }
+      ],
+      "id": 5
+    }
+  ]
+}

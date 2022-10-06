@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>Add Bookmark</h1>
+<div mat-dialog-content>
+  <form [formGroup]="bookmarkForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" max="30" matInput placeholder="Title" />
+      <div *ngIf="m.title.touched && m.title.invalid">
+        <mat-error *ngIf="m.url.errors?.required">Title Field is Required</mat-error>
+       
+    
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Url</mat-label>
+      <input formControlName="url" matInput placeholder="Url" />
+      <div *ngIf="m.url.touched && m.url.invalid">
+        <mat-error *ngIf="m.url.errors?.required">Please provide url</mat-error>
+        <mat-error *ngIf="m.url.errors?.pattern">Please provide valid url</mat-error>
+        
+    
+      </div>
+    </mat-form-field>
+
+   
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select placeholder="Select" formControlName="categoryName">
+        <mat-option
+        [value]="cat"
+        *ngFor="let cat of categoryData.categories"
+        >{{ cat.name }}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <div formArrayName="categories">
+      <div *ngFor="
+      let category of categories().controls;
+      let i = index
+    " [formGroupName]="i">
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <input formControlName="name" matInput placeholder="Category" min="30" />
+
+        </mat-form-field>
+        <button mat-raised-button color="warn"  *ngIf="i != 0" (click)="removeCategory(i)">-</button>
+      </div>
+      
+    </div>
+    <div>
+    </div>
+    <button mat-raised-button color="primary" (click)="addCategory()">+</button>
+  </form>
+</div>
+<div mat-dialog-actions="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="addBookmark()">
+    {{ actionBtn }}
+  </button>
+</div>

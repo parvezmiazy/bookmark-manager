@@ -1,0 +1,89 @@
+
+<mat-toolbar color="primary" fxLayout="row">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Bookmark Manager</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="open()">Add Bookmark</button>
+</mat-toolbar>
+<div fxLayout="row" fxLayoutAlign="start center">
+  <div fxFlex="50" fxLayoutGap="5px">
+
+  </div>
+  <div fxFlex="50" fxLayoutGap="5px">
+    <div class="container">
+    <div style="margin-top: 10px">
+      <mat-card>
+        <mat-card-content>
+          <div class="example-header">
+            <mat-form-field>
+              <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Filter"
+              />
+            </mat-form-field>
+          </div>
+  
+          <div class="example-container mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Title
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.title }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="url">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Url
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.url }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Category
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  
+                  <span *ngFor="let cat of row.categories"><mat-list>
+                  <mat-list-item>{{cat.name}}</mat-list-item>
+                  <mat-divider></mat-divider>
+                </mat-list>
+                </span>
+              </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Action
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="editBookmark(row)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+             
+                </mat-cell>
+              </ng-container>
+  
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+            </mat-table>
+  
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div></div>
+  </div>
+
