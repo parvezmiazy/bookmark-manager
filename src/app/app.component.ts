@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
   open(): void {
     this.dialog.open(AddBookMarkComponent, {
       width: '30%',
+    }).afterClosed()
+    .subscribe((val) => {
+      if (val === 'save') {
+        this.getBookmark();
+      }
     });
   }
 
@@ -58,6 +63,12 @@ export class AppComponent implements OnInit {
     this.dialog.open(AddBookMarkComponent, {
       width: '30%',
       data: row,
+    })
+    .afterClosed()
+    .subscribe((val) => {
+      if (val === 'update') {
+        this.getBookmark();
+      }
     });
   }
   getCategory() {

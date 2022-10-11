@@ -25,6 +25,20 @@
         }
       ],
       "id": 5
+    },
+    {
+      "title": "test",
+      "categoryName": "",
+      "url": "https://www.dailynayadiganta.com/",
+      "categories": [
+        {
+          "name": "test"
+        },
+        {
+          "name": "test2"
+        }
+      ],
+      "id": 6
     }
   ]
 }
