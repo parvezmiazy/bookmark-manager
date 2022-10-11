@@ -33,7 +33,7 @@ export class AddBookMarkComponent implements OnInit {
   ngOnInit(): void {
   
     this.bookmarkForm = this.fb.group({
-      title: ['', Validators.required,Validators.max(30)],
+      title: ['', Validators.required],
       categoryName: [''],
       url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
       categories: this.fb.array([this.initCategory()]) ,
@@ -77,8 +77,9 @@ export class AddBookMarkComponent implements OnInit {
       if (this.bookmarkForm.valid) {
         this.apiService.saveBookmark(this.bookmarkForm.value).subscribe(
           (res) => {
-            console.log(res);
-            alert('Bookmark Added Successfull');
+            //console.log(res);
+            this.dialogRef.close('save');
+            //alert('Bookmark Added Successfull');
             //this.router.navigateByUrl('');
           },
           (err) => {
@@ -98,10 +99,11 @@ export class AddBookMarkComponent implements OnInit {
       .updateBookmark(this.bookmarkForm.value, this.editData.id)
       .subscribe(
         (res) => {
-          console.log(res);
-          alert('Bookmark Updated Successfull');
+          //console.log(res);
+          //alert('Bookmark Updated Successfull');
           this.bookmarkForm.reset(), this.dialogRef.close('update');
           //this.router.navigateByUrl('');
+          this.dialogRef.close('update');
         },
         (err) => {
           console.log(err);
